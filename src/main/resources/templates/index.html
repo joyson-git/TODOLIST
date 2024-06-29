@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <!-- Include CSS for table styling, if needed -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Todo List</h1>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Is Complete</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through todoItem collection to display each item -->
+                <tr th:each="item : ${todoItems}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.description}"></td>
+                    <td th:text="${item.isComplete ? 'Yes' : 'No'}"></td>
+                    <td th:text="${item.createdAt}"></td>
+                    <td th:text="${item.updatedAt}"></td>
+                </tr>
+                <!-- Additional rows will be dynamically added here -->
+            </tbody>
+        </table>
+        
+       <p><a class ="btn btn-outline-success" href="/todo">
+       <i class ="bi bi-plus-square"></i> create a todo
+       </a> 
+        
+    </div>
+    <!-- Optionally include JavaScript for interactivity, like Bootstrap's JS or your own scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
