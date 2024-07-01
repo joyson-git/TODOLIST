@@ -12,16 +12,11 @@ public class HomeController {
 
 	@Autowired
 	private todoitemservice  toservice;
-	
-	@GetMapping("/")
-	public ModelAndView index() {
-		ModelAndView modelAndView = new ModelAndView("index");
-		modelAndView.addObject("todoItem",toservice.getAll());
-		return modelAndView;
-	}
-	
-	
-	
-	
-	
+
+    @GetMapping("/")
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("todoItems", toservice.getAll());
+        return modelAndView;
+    }
 }

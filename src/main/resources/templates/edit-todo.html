@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Todo Item</title>
+    <title>Edit Todo Item</title>
     <!-- Include Bootstrap CSS for styling -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Include Bootstrap Icons CSS for icons -->
@@ -20,9 +20,9 @@
                 </p>
             </div>
             <div class="col-6">
-                <h2>Add a New Todo Item</h2>
-                <!-- Form to add a new todo item -->
-                <form action="#" th:action="@{/todo}" th:object="${todoItem}" method="POST">
+                <h2>Edit Todo Item</h2>
+                <!-- Form to edit a todo item -->
+                <form th:action="@{/todo/{id}(id=${todo.id})}" th:object="${todo}" method="POST">
                     <div class="form-group">
                         <label for="description">Description</label>
                         <input class="form-control"
@@ -31,8 +31,21 @@
                                id="description"
                                placeholder="Description">
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="isComplete">Is Complete</label>
+                        <input class="form-control"
+                               type="checkbox"
+                               id="isComplete"
+                               th:field="*{isComplete}">
+                    </div>
+                    
+                    <!-- Hidden fields for timestamps -->
+                    <input type="hidden" th:field="*{createAt}"/>
+                    <input type="hidden" th:field="*{updateAt}"/>
+                    
                     <button type="submit" class="btn btn-outline-success">
-                        <i class="bi bi-plus-square-fill"></i> Add Todo
+                        <i class="bi bi-plus-square-fill"></i> Update
                     </button>
                 </form>
             </div>

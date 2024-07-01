@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-    <!-- Include CSS for table styling, if needed -->
+    <!-- Include Bootstrap CSS for styling -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include Bootstrap Icons CSS for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
 </head>
 <body>
     <div class="container">
@@ -13,7 +15,6 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Action</th>
                     <th>ID</th>
                     <th>Description</th>
                     <th>Is Complete</th>
@@ -22,24 +23,34 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Loop through todoItem collection to display each item -->
+            
+            
+                <!-- Loop through todoItems collection to display each item -->
                 <tr th:each="item : ${todoItems}">
+               <td>
+    <div class="btn btn-group-sm" role="group">
+        <a class="btn btn-info" th:href="@{/edit/{id}(id=${item.id})}">Edit</a>
+        <a class="btn btn-info" th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+    </div>
+</td>
+
+                
                     <td th:text="${item.id}"></td>
                     <td th:text="${item.description}"></td>
-                    <td th:text="${item.isComplete ? 'Yes' : 'No'}"></td>
-                    <td th:text="${item.createdAt}"></td>
-                    <td th:text="${item.updatedAt}"></td>
+                    <td th:text="${item.isComplete != null ? (item.isComplete ? 'Yes' : 'No') : 'No'}"></td>
+                    <td th:text="${item.createAt}"></td>
+                    <td th:text="${item.updateAt}"></td>
                 </tr>
-                <!-- Additional rows will be dynamically added here -->
             </tbody>
         </table>
         
-       <p><a class ="btn btn-outline-success" href="/todo">
-       <i class ="bi bi-plus-square"></i> create a todo
-       </a> 
-        
+        <p>
+            <a class="btn btn-outline-success" href="/create-todo">
+                <i class="bi bi-plus-square"></i> Create a Todo
+            </a>
+        </p>
     </div>
-    <!-- Optionally include JavaScript for interactivity, like Bootstrap's JS or your own scripts -->
+    <!-- Include Bootstrap and jQuery scripts for interactivity -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

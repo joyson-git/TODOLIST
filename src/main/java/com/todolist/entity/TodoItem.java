@@ -13,6 +13,8 @@ import jakarta.persistence.Table;
 @Table(name = "todo_item")
 public class TodoItem implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -64,7 +66,8 @@ public class TodoItem implements Serializable {
 
     @Override
     public String toString() {
-        return "TodoItem [id=" + id + ", description=" + description + ", isComplete=" + isComplete + ", createAt="
-                + createAt + ", updateAt=" + updateAt + "]";
+        return String.format("TodoItem {id=%d, description='%s', isComplete='%s', createAt=%s, updateAt=%s}",
+                id, description, isComplete, createAt, updateAt);
     }
+
 }
